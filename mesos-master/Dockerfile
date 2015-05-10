@@ -1,4 +1,4 @@
-FROM xdevelsistemas/mesosphere-docker:latest
+FROM xdevelsistemas/mesosphere-docker
 
 # Installing zookeeper.  Seems to be a dependancy to mesos
 # Not going to start it on runtime though
