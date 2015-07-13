@@ -61,7 +61,7 @@ You then can goto the Marathon's web page and submit a job.
          -e "MESOS_MASTER=zk://${HOST_IP}:2181/mesos" \
          -e "MESOS_LOG_DIR=/var/log/mesos" \
          -e "MESOS_LOGGING_LEVEL=INFO" \
-         xdevelsistemas/mesosphere-docker:mesos-slave
+         xdevelsistemas/mesosphere-docker:latest
 
 1. Goto the Meso's Web page
 
@@ -153,7 +153,7 @@ For this setup, we will need 2 servers with Docker installed on it.
          -e "MESOS_MASTER=zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/mesos" \
          -e "MESOS_LOG_DIR=/var/log/mesos" \
          -e "MESOS_LOGGING_LEVEL=INFO" \
-         xdevelsistemas/mesosphere-docker:mesos-slave
+         xdevelsistemas/mesosphere-docker:latest
 
     On host #2
 
@@ -162,7 +162,7 @@ For this setup, we will need 2 servers with Docker installed on it.
          -e "MESOS_MASTER=zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/mesos" \
          -e "MESOS_LOG_DIR=/var/log/mesos" \
          -e "MESOS_LOGGING_LEVEL=INFO" \
-         xdevelsistemas/mesosphere-docker:mesos-slave
+         xdevelsistemas/mesosphere-docker:latest
 
 1. Start some jobs
 
