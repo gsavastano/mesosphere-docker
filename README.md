@@ -30,7 +30,7 @@ You then can goto the Marathon's web page and submit a job.
           -p 2181:2181 \
           -p 2888:2888 \
           -p 3888:3888 \
-          garland/zookeeper
+          xdevelsistemas/mesosphere-docker:mesos-zookeeper
 
 1. Start Meso Master
 
@@ -45,14 +45,14 @@ You then can goto the Marathon's web page and submit a job.
           -e "MESOS_REGISTRY=in_memory" \
           -e "MESOS_WORK_DIR=/var/lib/mesos" \
           -d \
-          garland/mesosphere-docker-mesos-master
+          xdevelsistemas/mesosphere-docker:mesos-master
 
 1. Start Marathon
 
          docker run \
          -d \
          -p 8080:8080 \
-         garland/mesosphere-docker-marathon --master zk://${HOST_IP}:2181/mesos --zk zk://${HOST_IP}:2181/marathon
+         xdevelsistemas/mesosphere-docker:mesos-marathon --master zk://${HOST_IP}:2181/mesos --zk zk://${HOST_IP}:2181/marathon
 
 1. Start Meso Slave in a container
 
@@ -61,7 +61,7 @@ You then can goto the Marathon's web page and submit a job.
          -e "MESOS_MASTER=zk://${HOST_IP}:2181/mesos" \
          -e "MESOS_LOG_DIR=/var/log/mesos" \
          -e "MESOS_LOGGING_LEVEL=INFO" \
-         garland/mesosphere-docker-mesos-master:latest
+         xdevelsistemas/mesosphere-docker:mesos-slave
 
 1. Goto the Meso's Web page
 
@@ -92,7 +92,7 @@ For this setup, we will need 2 servers with Docker installed on it.
          -e SERVER_ID=1 \
          -e ADDITIONAL_ZOOKEEPER_1=server.1=${HOST_IP_1}:2888:3888 \
          -e ADDITIONAL_ZOOKEEPER_2=server.2=${HOST_IP_2}:2888:3888 \
-         garland/zookeeper
+         xdevelsistemas/mesosphere-docker:mesos-zookeeper
 
     On host #2
 
@@ -101,7 +101,7 @@ For this setup, we will need 2 servers with Docker installed on it.
          -e SERVER_ID=2 \
          -e ADDITIONAL_ZOOKEEPER_1=server.1=${HOST_IP_1}:2888:3888 \
          -e ADDITIONAL_ZOOKEEPER_2=server.2=${HOST_IP_2}:2888:3888 \
-         garland/zookeeper
+         xdevelsistemas/mesosphere-docker:mesos-zookeeper
 
     The only difference is the "SERVER_ID".  You can repeat this for the next X number of ZooKeepers you want to run.
 
@@ -120,7 +120,7 @@ For this setup, we will need 2 servers with Docker installed on it.
           -e "MESOS_REGISTRY=in_memory" \
           -e "MESOS_WORK_DIR=/var/lib/mesos" \
           -d \
-          garland/mesosphere-docker-mesos-master
+          xdevelsistemas/mesosphere-docker:mesos-master
 
     On host #2
 
@@ -135,14 +135,14 @@ For this setup, we will need 2 servers with Docker installed on it.
           -e "MESOS_REGISTRY=in_memory" \
           -e "MESOS_WORK_DIR=/var/lib/mesos" \
           -d \
-          garland/mesosphere-docker-mesos-master
+          xdevelsistemas/mesosphere-docker:mesos-master
 
 1. Start Marathon
 
          docker run \
          -d \
          -p 8080:8080 \
-         garland/mesosphere-docker-marathon --master zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/mesos --zk zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/marathon
+         xdevelsistemas/mesosphere-docker:mesos-marathon --master zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/mesos --zk zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/marathon
 
 1. Start Meso Slaves in a container
 
@@ -153,7 +153,7 @@ For this setup, we will need 2 servers with Docker installed on it.
          -e "MESOS_MASTER=zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/mesos" \
          -e "MESOS_LOG_DIR=/var/log/mesos" \
          -e "MESOS_LOGGING_LEVEL=INFO" \
-         garland/mesosphere-docker-mesos-master:latest
+         xdevelsistemas/mesosphere-docker:mesos-slave
 
     On host #2
 
@@ -162,7 +162,7 @@ For this setup, we will need 2 servers with Docker installed on it.
          -e "MESOS_MASTER=zk://${HOST_IP_1}:2181,${HOST_IP_2}:2181/mesos" \
          -e "MESOS_LOG_DIR=/var/log/mesos" \
          -e "MESOS_LOGGING_LEVEL=INFO" \
-         garland/mesosphere-docker-mesos-master:latest
+         xdevelsistemas/mesosphere-docker:mesos-slave
 
 1. Start some jobs
 
