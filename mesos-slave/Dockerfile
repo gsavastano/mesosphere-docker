@@ -7,9 +7,9 @@ RUN echo 1 | dd of=/var/lib/zookeeper/myid
 
 # Install mesos.
 #RUN apt-get -y install mesos
-RUN echo in_memory | dd of=/etc/mesos-master/registry
+RUN echo in_memory | dd of=/etc/mesos-slave/registry
 
 # Not exposing port b/c you have to run the master in bridge net mode
 EXPOSE 5050
 
-ENTRYPOINT ["mesos-master"]
+ENTRYPOINT ["mesos-slave"]
