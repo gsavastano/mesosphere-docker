@@ -1,10 +1,6 @@
 FROM debian:jessie
 
-ENV VERSION 0.23.0
-ENV PKG_RELEASE 1.0
-
-
-# Install dependancies
+# Install dependencies
 RUN apt-get update && apt-get -y install lsb-release && \
     apt-get install -y openssh-server &&\
     apt-get install -y sudo &&\
@@ -24,8 +20,13 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/s
 RUN apt-get install -y docker.io && \
     apt-get -y install curl python-setuptools python-pip python-dev python-protobuf
 #install mesos
-RUN curl -s -O http://downloads.mesosphere.io/master/debian/8/mesos_${VERSION}-${PKG_RELEASE}.debian81_amd64.deb && \
-    dpkg --unpack mesos_${VERSION}-${PKG_RELEASE}.debian81_amd64.deb
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF && \
+    DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]') && \
+    CODENAME=$(lsb_release -cs) && \
+    echo "deb http://repos.mesosphere.io/${DISTRO} ${CODENAME} main" | sudo tee /etc/apt/sources.list.d/mesosphere.list && \
+    apt-get -y update
+RUN apt-get -y install  libzookeeper-mt2 liblog4cxx10  libsvn1 libxml2 libapr1 libaprutil1 libserf-1-1 zookeeper-bin xml-core
+RUN apt-get -y install  mesos
 #Clean up apt-repository
 #RUN apt-get clean && \
 #    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
