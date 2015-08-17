@@ -1,10 +1,9 @@
-FROM xdevelsistemas/mesosphere-docker:latest
+FROM centos:7
 
-#zookeeper conf
-RUN echo 1 | dd of=/var/lib/zookeeper/myid
-RUN echo in_memory | dd of=/etc/mesos-master/registry
+RUN rpm -i http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm && yum -y install mesos-0.23.0
 
-# Not exposing port b/c you have to run the master in bridge net mode
-EXPOSE 5050
+CMD ["/usr/sbin/mesos-master"]
 
-ENTRYPOINT ["mesos-master"]
+ENV MESOS_WORK_DIR /tmp/mesos
+
+VOLUME /tmp/mesos
