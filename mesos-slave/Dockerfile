@@ -3,7 +3,8 @@ FROM centos:7
 RUN rpm -i http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm && yum -y install mesos-0.23.0
 
 # http://docs.docker.com/installation/centos/
-RUN curl -sSL https://get.docker.com/ | sh
+#RUN curl -sSL https://get.docker.com/ | sh
+RUN  yum install -y docker-1.6.2-*
 
 CMD ["/usr/sbin/mesos-slave"]
 
