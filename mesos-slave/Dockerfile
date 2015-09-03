@@ -10,7 +10,7 @@ RUN yum install -y curl; yum upgrade -y; yum update -y;  yum clean all; \
 #RUN curl -sSL https://get.docker.com/ | sh
 RUN  yum install -y docker-1.6.2-*
 
-CMD ["/usr/sbin/mesos-slave"]
+ENTRYPOINT ["/usr/sbin/mesos-slave"]
 
 ENV MESOS_WORK_DIR /tmp/mesos
 #ENV MESOS_CONTAINERIZERS docker,mesos
