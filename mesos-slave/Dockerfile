@@ -9,7 +9,8 @@ RUN  yum install -y docker-1.6.2-*
 CMD ["/usr/sbin/mesos-slave"]
 
 ENV MESOS_WORK_DIR /tmp/mesos
-ENV MESOS_CONTAINERIZERS docker,mesos
+#ENV MESOS_CONTAINERIZERS docker,mesos
+ENV MESOS_CONTAINERIZERS mesos
 
 # https://mesosphere.github.io/marathon/docs/native-docker.html
 ENV MESOS_EXECUTOR_REGISTRATION_TIMEOUT 5mins
