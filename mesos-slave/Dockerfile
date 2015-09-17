@@ -3,6 +3,7 @@ MAINTAINER Clayton Santos da Silva <clayton@xdevel.com.br>
 
 #install pre-req and add mesos
 RUN yum install -y curl; yum upgrade -y; yum update -y;  yum clean all; \
+    yum -y install wget gcc gcc-c++ make flex bison gperf ruby openssl-devel freetype-devel fontconfig-devel libicu-devel sqlite-devel libpng-devel libjpeg-devel; \
     rpm -i http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm && yum -y install mesos-0.23.0
 
 
