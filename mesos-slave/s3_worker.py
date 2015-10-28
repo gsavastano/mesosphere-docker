@@ -1,4 +1,3 @@
-from subprocess import call
 import os
 import sys
 
@@ -12,18 +11,17 @@ os.environ["BUCKET_NAME"]=sys.argv[4]
 os.environ["AWS_DEFAULT_REGION"]=sys.argv[5]
 
 
-
-
-
 def main():
-    if (sys.argv[6] != 'upload'):
+    if (len(sys.argv) >= 7 and sys.argv[6] != 'upload'):
         print('upload init')
-        #part1 get file from s3 bucket
+        i#part1 get file from s3 bucket
         __exec = call(['aws','s3','cp',sys.argv[1], str('s3://' + os.environ['BUCKET_NAME'] + '/' + sys.argv[1]) ])
     else:
         print('download init')
         #part1 get file from s3 bucket
         __exec = call(['aws','s3','cp',str('s3://' + os.environ['BUCKET_NAME'] + '/' + sys.argv[1]),'.'])
+
+
 
 if __name__ == "__main__":
     main()
