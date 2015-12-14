@@ -10,7 +10,7 @@ RUN yum install -y curl; yum upgrade -y; yum update -y;  yum clean all; \
 # http://docs.docker.com/installation/centos/
 #RUN curl -sSL https://get.docker.com/ | sh
 RUN  rpm -Uvh http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm
-RUN  yum install -y docker-1.6.2-*  &&\
+RUN  yum install -y docker-1.7.1-*  &&\
      yum install -y postgresql94-server postgresql94 samba-client cifs-utils mysql-server
 
 RUN  mkdir -p /mnt/integracoes 
